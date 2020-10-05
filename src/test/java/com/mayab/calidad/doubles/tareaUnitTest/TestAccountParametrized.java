@@ -41,7 +41,7 @@ public class TestAccountParametrized {
 	
 	@Test
 	public void AccountCreationTest() {
-		assertThat(expected, is(new Account(holder, balance, zone)));
+		assertThat(true, is(expected.equals(new Account(holder, balance, zone))));
 	}
 
 }

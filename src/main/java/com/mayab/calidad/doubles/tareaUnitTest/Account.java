@@ -1,5 +1,6 @@
 package com.mayab.calidad.doubles.tareaUnitTest;
 
+import java.util.logging.Level;
 
 public class Account {
     
@@ -47,5 +48,15 @@ public class Account {
         this.alerts = listener;
     }
     
+    @Override
+    public boolean equals(Object obj) {
+    	// TODO Auto-generated method stub
+    	Account acc = (Account) obj;
+    	if (this.holder == acc.getHolder() && this.balance == acc.getBalance() && this.zone == acc.getZone()) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
     
 }
