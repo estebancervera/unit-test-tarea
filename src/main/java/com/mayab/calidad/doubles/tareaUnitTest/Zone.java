@@ -7,15 +7,15 @@ import java.util.Map;
  * Hello world!
  *
  */
-public class Zone
+public  class Zone
 {
 
-	  public static final Map<Integer, Integer> zones = new HashMap<>();
+	  public static final Map<Integer, Double> zones = new HashMap<>();
 
 	  static {
-	      zones.put(1, 1);
-	      zones.put(2, 2);
-	      zones.put(3, 2);
+	      zones.put(1, .01);
+	      zones.put(2, .02);
+	      zones.put(3, .03);
 	  }
 	  
 }

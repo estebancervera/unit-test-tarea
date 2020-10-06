@@ -1,24 +1,32 @@
 package com.mayab.calidad.doubles.tareaUnitTest;
 
-import java.util.logging.Level;
+import java.util.UUID;
+
 
 public class Account {
     
+	private String id;
 	private int balance;
    	private  String holder;
     private int zone;
     AlertListener alerts;
     
+
+    
+    
     public Account(String holder, int initialBalance, int zone) {
     	this.holder = holder;
     	this.balance = initialBalance;
     	this.zone = zone;
+    	this.id = holder + holder.length();
     }
 
-    public Account(String holder, int initialBalance, AlertListener alerts){
+    public Account(String holder, int initialBalance, AlertListener alerts, int zone){
         this.holder = holder;
         this.balance = initialBalance;
         this.alerts = alerts;
+        this.id = holder + holder.length();
+        this.zone = zone;
     }
     
     public int getBalance() {
@@ -33,15 +41,23 @@ public class Account {
 		return zone;
 	}
 
-    void debit(int balance) {
+   public Transaction debit(int balance) {
         this.balance -= balance;
+        //System.out.println("a1");
         if(this.balance < 100){
-            this.alerts.sendAlert(this.holder+", your account balance is below 100");
+        	// System.out.println("a2");
+        	// System.out.println(this.alerts);
+            this.alerts.sendAlert(this.holder + ", your account balance is below 100");
+            //System.out.println("a3");
         }
+       // System.out.println("a4");
+        //System.out.println(balance);
+        return new Transaction(this, balance, false);
     }
 
-    void credit(int balance) {
+    public Transaction credit(int balance) {
         this.balance += balance;
+        return new Transaction(this, balance, true);
     }
     
     void setAlertListener(AlertListener listener){
@@ -52,11 +68,16 @@ public class Account {
     public boolean equals(Object obj) {
     	// TODO Auto-generated method stub
     	Account acc = (Account) obj;
-    	if (this.holder == acc.getHolder() && this.balance == acc.getBalance() && this.zone == acc.getZone()) {
+    	if (this.id.equals(acc.id)) {
+    		//System.out.println(this.id);
     		return true;
     	}
+    	//System.out.println(this.id);
+		//System.out.println(acc.id);
     	
     	return false;
     }
+    
+    
     
 }

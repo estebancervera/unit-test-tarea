@@ -20,13 +20,14 @@ public class TestAlerts {
 	@Before
 	public void setUp() {
 		alert = mock(AlertListener.class);
-		account = new Account("Esteban", 150, alert);
+		account = new Account("Esteban", 90, alert, 1);
 	}
 
 	@Test
 	public void AlertUnder100balanceTest() {
 		
-		account.debit(55);
+		Transaction transaction = account.debit(55);
+		System.out.println(transaction);
 		verify(alert).sendAlert(account.getHolder() + ", your account balance is below 100");
 		
 	}
